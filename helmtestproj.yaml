@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-test-proj
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: testproj
+    repoURL: https://github.com/infa-hbalakrishnan/helm-test-proj.git
+    targetRevision: 0.1.3
+    helm:
+      releaseName: helm-test-proj
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: helm-test-proj
